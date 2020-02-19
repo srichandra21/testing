@@ -1,0 +1,138 @@
+<html>
+<head>
+	<script>
+	function hideshow(testID) {
+		var tcName=document.getElementById('tsname'+testID);
+		var stepsTable=document.getElementById('tst'+testID);
+		var tcDesc=document.getElementById('tsdesc'+testID);
+		var eleIndicator = document.getElementById('exp'+testID);
+		var testcasestatus=document.getElementById('tststatus'+testID);
+		var testcaseday=document.getElementById('tstday'+testID);
+
+		if(stepsTable==null || eleIndicator==null){
+			alert('Script Error');
+			return;
+		}
+
+		if(stepsTable.className=='stepstbl_vis') {
+			tcName.className = 'tcname';
+			stepsTable.className = 'stepstbl_notvis';
+			tcDesc.className = 'tcdesc';
+			eleIndicator.innerHTML='[+]';
+		}else{
+			tcName.className = 'tcname_selected';
+			stepsTable.className = 'stepstbl_vis';
+			tcDesc.className = 'tcdesc_selected';
+			eleIndicator.innerHTML='[-]';
+		}
+	}
+	function setInitial() {
+		var testID = 1;
+		while(true){
+			var testcaseday=document.getElementById('tstday'+testID);
+			var day=document.getElementById('day'+testID);
+			var eleStatus=document.getElementById('st'+testID);
+			var eleIndicator = document.getElementById('exp'+testID);
+			var testcasestatus=document.getElementById('tststatus'+testID);
+			if(eleStatus==null || eleIndicator==null) break;
+			//set values to pass/fail/warning
+			if(day.innerText==null){
+				testcaseday.innerHTML= day.textContent;
+			}else if(day.textContent==null) {
+				testcaseday.innerHTML=day.innerText;
+			}
+			if(eleStatus.innerText=='Pass' || eleStatus.textContent=='Pass'){
+				eleIndicator.style.color = 'green';
+				testcasestatus.innerHTML='Pass';
+				testcasestatus.style.color = 'green';
+			}else if(eleStatus.innerText=='Warning' || eleStatus.textContent=='Warning'){
+				eleIndicator.style.color = '#FF9900';
+				testcasestatus.innerHTML='Warning';
+				testcasestatus.style.color = '#FF9900';
+			}else{
+				eleIndicator.style.color = 'red';
+				testcasestatus.innerHTML='Fail';
+				testcasestatus.style.color = 'red';
+			}
+			//alert(testID + eleStatus.innerText);
+			testID++;
+		}
+	}
+	</script>
+	<style>
+		body,p,h1,h2,h3,h4,table,td,th,ul,ol,textarea,input{background-color:#FFFFFF;font-family:verdana,helvetica,arial,sans-serif;font-size:12px;}
+		table{border:1px solid sandybrown;border-collapse:collapse;background-color:#B3D9FF;}
+		td.headerrow1{text-align:center;background-color:sienna;color:white;font-weight:bold;font-size:14px;}
+		td{border:0px;padding:3px;}
+		td.tcname_selected{background-color:peru;color:black;font-size:14px;}
+		td.tcdesc_selected{background-color:peru;color:black;font-size:12px;}
+		td.tcname{background-color:moccasin;font-size:14px;}
+		td.tcdesc{background-color:moccasin;font-size:12px;}
+		td.collapsebutton{text-align:center;}
+		td.tcstatus{text-align:center;color:#8A4117;}
+		tr td.tccontainer{padding:0px;border:1px solid sandybrown;}
+		tr.stepstbl_vis{}
+		tr.stepstbl_notvis{display:none;}
+		table.stepstbl {border:none;}
+		tr.step_head td{text-align:center;color:black;background-color:tan;font-weight:bold;}
+		td.step_reg{text-align:left;background-color:White;}
+		tr.business_step td{background-color:AntiqueWhite;color:black;font-weight:bold;}
+		tr.statuspass td,td.statuspass{color:green;border 1px solid wheat;}
+		a.passlink,font.statuspass{color:green;}
+		tr.statusfail td,td.statusfail{color:red;}
+		a.faillink,font.statusfail{color:red;}
+		tr.statuswarn td,td.statuswarn{color:orange;}
+		a.warnlink,font.statuswarn{color:orange;}
+		tr.statusdone td,td.statusdone{color:grey;}
+		tr.tcfooter td{background-color:white;color:black;font-weight:bold;border:1px solid sandybrown;}
+		td.stepno{text-align:left;background-color:White;padding-left:15px;}
+		td.summarycolumnvalue{text-align:center;color:black;font-weight:bold;}
+		td.summarypasscolumn{text-align:center;color:green;font-weight:bold;}
+		td.summaryfailcolumn{text-align:center;color:red;font-weight:bold;}
+		td.summarywarningcolumn{text-align:center;color:orange;font-weight:bold;}
+		span.hidden{display:none;}
+	</style>
+	<title>Automation Regression Report</title>
+</head>
+<body onload="setInitial()">
+<table width="900px" align="center">
+	<tr>
+		<td class="headerrow1" colspan="3">null</td>
+	</tr>
+	
+</table>
+</br></br>
+<table width="500px" align="center">
+	<tr>
+		<td class="headerrow1" colspan="2"> Test Execution Summary</td>
+	</tr>
+	<tr>
+		<td class="summarycolumn">Environment</td>
+		<td class="summarycolumnvalue">null</td>
+	</tr>
+	<tr>
+		<td class="summarycolumn">Test Cases Executed</td>
+		<td class="summarycolumnvalue">0</td>
+	</tr>
+	<tr>
+		<td class="summarycolumn">Total Pass Count</td>
+		<td class="summarypasscolumn">0</td>
+	</tr>
+	<tr>
+		<td class="summarycolumn">Total Fail Count</td>
+		<td class="summaryfailcolumn">0</td>
+	</tr>
+	<tr>
+		<td class="summarycolumn">Total Warning Count</td>
+		<td class="summarywarningcolumn">0</td>
+	</tr>
+	<tr>
+		<td class="summarycolumn">Start Time</td>
+		<td class="summarycolumnvalue">02-19-2020	12-03-22_PM</td>
+	</tr>
+	<tr>
+		<td class="summarycolumn">End Time</td>
+		<td class="summarycolumnvalue">02-19-2020	12-03-22_PM</td>
+	</tr>
+</table>
+</body></html>

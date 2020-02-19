@@ -1,0 +1,5331 @@
+<html>
+<head>
+	<script>
+	function hideshow(testID) {
+		var tcName=document.getElementById('tsname'+testID);
+		var stepsTable=document.getElementById('tst'+testID);
+		var tcDesc=document.getElementById('tsdesc'+testID);
+		var eleIndicator = document.getElementById('exp'+testID);
+		var testcasestatus=document.getElementById('tststatus'+testID);
+		var testcaseday=document.getElementById('tstday'+testID);
+
+		if(stepsTable==null || eleIndicator==null){
+			alert('Script Error');
+			return;
+		}
+
+		if(stepsTable.className=='stepstbl_vis') {
+			tcName.className = 'tcname';
+			stepsTable.className = 'stepstbl_notvis';
+			tcDesc.className = 'tcdesc';
+			eleIndicator.innerHTML='[+]';
+		}else{
+			tcName.className = 'tcname_selected';
+			stepsTable.className = 'stepstbl_vis';
+			tcDesc.className = 'tcdesc_selected';
+			eleIndicator.innerHTML='[-]';
+		}
+	}
+	function setInitial() {
+		var testID = 1;
+		while(true){
+			var testcaseday=document.getElementById('tstday'+testID);
+			var day=document.getElementById('day'+testID);
+			var eleStatus=document.getElementById('st'+testID);
+			var eleIndicator = document.getElementById('exp'+testID);
+			var testcasestatus=document.getElementById('tststatus'+testID);
+			if(eleStatus==null || eleIndicator==null) break;
+			//set values to pass/fail/warning
+			if(day.innerText==null){
+				testcaseday.innerHTML= day.textContent;
+			}else if(day.textContent==null) {
+				testcaseday.innerHTML=day.innerText;
+			}
+			if(eleStatus.innerText=='Pass' || eleStatus.textContent=='Pass'){
+				eleIndicator.style.color = 'green';
+				testcasestatus.innerHTML='Pass';
+				testcasestatus.style.color = 'green';
+			}else if(eleStatus.innerText=='Warning' || eleStatus.textContent=='Warning'){
+				eleIndicator.style.color = '#FF9900';
+				testcasestatus.innerHTML='Warning';
+				testcasestatus.style.color = '#FF9900';
+			}else{
+				eleIndicator.style.color = 'red';
+				testcasestatus.innerHTML='Fail';
+				testcasestatus.style.color = 'red';
+			}
+			//alert(testID + eleStatus.innerText);
+			testID++;
+		}
+	}
+	</script>
+	<style>
+		body,p,h1,h2,h3,h4,table,td,th,ul,ol,textarea,input{background-color:#FFFFFF;font-family:verdana,helvetica,arial,sans-serif;font-size:12px;}
+		table{border:1px solid sandybrown;border-collapse:collapse;background-color:#B3D9FF;}
+		td.headerrow1{text-align:center;background-color:sienna;color:white;font-weight:bold;font-size:14px;}
+		td{border:0px;padding:3px;}
+		td.tcname_selected{background-color:peru;color:black;font-size:14px;}
+		td.tcdesc_selected{background-color:peru;color:black;font-size:12px;}
+		td.tcname{background-color:moccasin;font-size:14px;}
+		td.tcdesc{background-color:moccasin;font-size:12px;}
+		td.collapsebutton{text-align:center;}
+		td.tcstatus{text-align:center;color:#8A4117;}
+		tr td.tccontainer{padding:0px;border:1px solid sandybrown;}
+		tr.stepstbl_vis{}
+		tr.stepstbl_notvis{display:none;}
+		table.stepstbl {border:none;}
+		tr.step_head td{text-align:center;color:black;background-color:tan;font-weight:bold;}
+		td.step_reg{text-align:left;background-color:White;}
+		tr.business_step td{background-color:AntiqueWhite;color:black;font-weight:bold;}
+		tr.statuspass td,td.statuspass{color:green;border 1px solid wheat;}
+		a.passlink,font.statuspass{color:green;}
+		tr.statusfail td,td.statusfail{color:red;}
+		a.faillink,font.statusfail{color:red;}
+		tr.statuswarn td,td.statuswarn{color:orange;}
+		a.warnlink,font.statuswarn{color:orange;}
+		tr.statusdone td,td.statusdone{color:grey;}
+		tr.tcfooter td{background-color:white;color:black;font-weight:bold;border:1px solid sandybrown;}
+		td.stepno{text-align:left;background-color:White;padding-left:15px;}
+		td.summarycolumnvalue{text-align:center;color:black;font-weight:bold;}
+		td.summarypasscolumn{text-align:center;color:green;font-weight:bold;}
+		td.summaryfailcolumn{text-align:center;color:red;font-weight:bold;}
+		td.summarywarningcolumn{text-align:center;color:orange;font-weight:bold;}
+		span.hidden{display:none;}
+	</style>
+	<title>CloudForte Unav Automation Test Results</title>
+</head>
+<body onload="setInitial()">
+<table width="900px" align="center">
+	<tr>
+		<td class="headerrow1" colspan="3">CloudForte Unav Automation Test Results</td>
+	</tr>
+	
+	<tr>
+		<td width="45px" class="collapsebutton" rowspan="2"><span id="exp1" onClick="hideshow('1')">[+]</span></td>
+		<td width="775px" class="tcname" id="tsname1"><TestName>1. TS_Azure_01</TestName></td>
+		<td width="80px" class="tcstatus" rowspan="2"><span id="tststatus1" >TBD</span></td>
+	</tr>
+	<tr>
+		<td class="tcdesc" id="tsdesc1"><TestDescription>Azure workload End-to-End flow</TestDescription></td>
+	</tr>
+	<tr class="stepstbl_notvis" id="tst1"><td class="tccontainer" colspan="3">
+		<table class="stepstbl" width="100%">
+			<tr class="step_head">
+				<td width="45px">S No</td>
+				<td width="700px">Step Description</td>
+				<td width="75px">Status</td>
+				<td width="80px">Time</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>1</td>
+				<td colspan="3">Login to CloudForte Unav Application</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.1</td>
+				<td>Username is entered</td>
+				<td>Done</td>
+				<td>12:07:29</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.2</td>
+				<td>Password is entered</td>
+				<td>Done</td>
+				<td>12:07:29</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.3</td>
+				<td>Login button is entered</td>
+				<td>Done</td>
+				<td>12:07:29</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>2</td>
+				<td colspan="3">Create Application workload</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">2.1</td>
+				<td>Cloud Native radio button is selected</td>
+				<td>Done</td>
+				<td>12:07:34</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">2.2</td>
+				<td>Define Workload button is selected</td>
+				<td>Done</td>
+				<td>12:07:34</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>3</td>
+				<td colspan="3">Enter Workload details in Define Cloud Native Workload page</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.1</td>
+				<td>Workload name is entered as Azure 1234</td>
+				<td>Done</td>
+				<td>12:07:39</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.2</td>
+				<td>Workload Description is entered as Azure 1235</td>
+				<td>Done</td>
+				<td>12:07:40</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.3</td>
+				<td>Cloud Provider is selected as azure</td>
+				<td>Done</td>
+				<td>12:07:43</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.4</td>
+				<td>Region is selected as us-east-1</td>
+				<td>Done</td>
+				<td>12:07:49</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.5</td>
+				<td>Industry Type is selected as agriculture</td>
+				<td>Done</td>
+				<td>12:07:55</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.6</td>
+				<td>Industry is selected as agriculture</td>
+				<td>Done</td>
+				<td>12:08:01</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.7</td>
+				<td>Environment is selected as Production</td>
+				<td>Done</td>
+				<td>12:08:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.8</td>
+				<td>Account ID is entered as 21314;123134</td>
+				<td>Done</td>
+				<td>12:08:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.9</td>
+				<td>Define Workload button is clicked</td>
+				<td>Done</td>
+				<td>12:08:09</td>
+			</tr>
+
+			<tr class="statusfail">
+				<td class="stepno">3.10</td>
+				<td>Azure 1234 Workload not created</td>
+				<td><a class="faillink" href='TS_Azure_01_120722/Screen1.png' target="_blank">Fail</a></td>
+				<td>12:08:13</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>4</td>
+				<td colspan="3">Checking the Review Tab before starting the review</td>
+			</tr>
+
+			<tr class="tcfooter">
+			<td colspan="4" align="Center">
+				PASS:<font class="statuspass">0</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				FAIL:<font class="statusfail">1</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				Total Duration:00: 00: 54
+			</td></tr></table><span id="st1" class="hidden"><TCStatus>Fail</TCStaus></span><span id="day1" class="hidden">1</span></td></tr>	
+	<tr>
+		<td width="45px" class="collapsebutton" rowspan="2"><span id="exp2" onClick="hideshow('2')">[+]</span></td>
+		<td width="775px" class="tcname" id="tsname2"><TestName>2. TS_Azure_02</TestName></td>
+		<td width="80px" class="tcstatus" rowspan="2"><span id="tststatus2" >TBD</span></td>
+	</tr>
+	<tr>
+		<td class="tcdesc" id="tsdesc2"><TestDescription>Azure workload End-to-End flow</TestDescription></td>
+	</tr>
+	<tr class="stepstbl_notvis" id="tst2"><td class="tccontainer" colspan="3">
+		<table class="stepstbl" width="100%">
+			<tr class="step_head">
+				<td width="45px">S No</td>
+				<td width="700px">Step Description</td>
+				<td width="75px">Status</td>
+				<td width="80px">Time</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>1</td>
+				<td colspan="3">Login to CloudForte Unav Application</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.1</td>
+				<td>Username is entered</td>
+				<td>Done</td>
+				<td>12:08:21</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.2</td>
+				<td>Password is entered</td>
+				<td>Done</td>
+				<td>12:08:21</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.3</td>
+				<td>Login button is entered</td>
+				<td>Done</td>
+				<td>12:08:21</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>2</td>
+				<td colspan="3">Create Application workload</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">2.1</td>
+				<td>Cloud Native radio button is selected</td>
+				<td>Done</td>
+				<td>12:08:26</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">2.2</td>
+				<td>Define Workload button is selected</td>
+				<td>Done</td>
+				<td>12:08:26</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>3</td>
+				<td colspan="3">Enter Workload details in Define Cloud Native Workload page</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.1</td>
+				<td>Workload name is entered as Azure 1235</td>
+				<td>Done</td>
+				<td>12:08:31</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.2</td>
+				<td>Workload Description is entered as Azure 1235</td>
+				<td>Done</td>
+				<td>12:08:31</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.3</td>
+				<td>Cloud Provider is selected as azure</td>
+				<td>Done</td>
+				<td>12:08:35</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.4</td>
+				<td>Region is selected as us-east-1</td>
+				<td>Done</td>
+				<td>12:08:41</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.5</td>
+				<td>Industry Type is selected as agriculture</td>
+				<td>Done</td>
+				<td>12:08:47</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.6</td>
+				<td>Industry is selected as agriculture</td>
+				<td>Done</td>
+				<td>12:08:53</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.7</td>
+				<td>Environment is selected as Production</td>
+				<td>Done</td>
+				<td>12:09:01</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.8</td>
+				<td>Account ID is entered as 21314;123134</td>
+				<td>Done</td>
+				<td>12:09:01</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.9</td>
+				<td>Define Workload button is clicked</td>
+				<td>Done</td>
+				<td>12:09:01</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">3.10</td>
+				<td>Azure 1235 Workload created successfully</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen1.png' target="_blank">Pass</a></td>
+				<td>12:09:05</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>4</td>
+				<td colspan="3">Checking the Review Tab before starting the review</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">4.1</td>
+				<td>Cloud Service Provider of the Workload is azure</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen2.png' target="_blank">Pass</a></td>
+				<td>12:09:05</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">4.2</td>
+				<td>Default pillar and number of questions is correct</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen3.png' target="_blank">Pass</a></td>
+				<td>12:09:06</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">4.3</td>
+				<td>Start Review button clicked</td>
+				<td>Done</td>
+				<td>12:09:06</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>5</td>
+				<td colspan="3">Start the Review by answering the Questionaire</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.1</td>
+				<td>Sec_01_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.2</td>
+				<td>Sec_01_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:10</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.3</td>
+				<td>Sec_01_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:10</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.4</td>
+				<td>Sec_01_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:09:10</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.5</td>
+				<td>Sec_01_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:09:10</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.6</td>
+				<td>Sec_01_opt07 is selected</td>
+				<td>Done</td>
+				<td>12:09:10</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.7</td>
+				<td>Sec_01_opt08 is selected</td>
+				<td>Done</td>
+				<td>12:09:10</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.8</td>
+				<td>Sec_01_opt09 is selected</td>
+				<td>Done</td>
+				<td>12:09:10</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.9</td>
+				<td>Sec_02_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:13</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.10</td>
+				<td>Sec_02_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:09:13</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.11</td>
+				<td>Sec_02_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:13</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.12</td>
+				<td>Sec_02_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:13</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.13</td>
+				<td>Sec_02_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:09:14</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.14</td>
+				<td>Sec_02_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:09:14</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.15</td>
+				<td>Sec_02_opt07 is selected</td>
+				<td>Done</td>
+				<td>12:09:14</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.16</td>
+				<td>Sec_03_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:17</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.17</td>
+				<td>Sec_03_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:09:17</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.18</td>
+				<td>Sec_03_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:17</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.19</td>
+				<td>Sec_03_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:17</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.20</td>
+				<td>Sec_03_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:09:17</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.21</td>
+				<td>Sec_04_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:20</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.22</td>
+				<td>Sec_04_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:09:20</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.23</td>
+				<td>Sec_04_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:20</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.24</td>
+				<td>Sec_04_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:20</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.25</td>
+				<td>Sec_05_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.26</td>
+				<td>Sec_05_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:09:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.27</td>
+				<td>Sec_05_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.28</td>
+				<td>Sec_05_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.29</td>
+				<td>Sec_05_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:09:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.30</td>
+				<td>Sec_06_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:27</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.31</td>
+				<td>Sec_06_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:09:27</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.32</td>
+				<td>Sec_06_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:27</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.33</td>
+				<td>Sec_06_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:27</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.34</td>
+				<td>Sec_06_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:09:27</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.35</td>
+				<td>Sec_07_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:30</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.36</td>
+				<td>Sec_07_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:09:30</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.37</td>
+				<td>Sec_07_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:31</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.38</td>
+				<td>Sec_07_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:31</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.39</td>
+				<td>Sec_07_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:09:31</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.40</td>
+				<td>Sec_07_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:09:31</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.41</td>
+				<td>Sec_08_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:34</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.42</td>
+				<td>Sec_08_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:09:34</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.43</td>
+				<td>Sec_08_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:34</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.44</td>
+				<td>Sec_08_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:34</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.45</td>
+				<td>Sec_08_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:09:34</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.46</td>
+				<td>Sec_09_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:37</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.47</td>
+				<td>Sec_09_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:09:37</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.48</td>
+				<td>Sec_09_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:37</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.49</td>
+				<td>Sec_09_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:37</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.50</td>
+				<td>Sec_09_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:09:38</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.51</td>
+				<td>Sec_09_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:09:38</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.52</td>
+				<td>Sec_10_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:41</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.53</td>
+				<td>Sec_10_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:09:41</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.54</td>
+				<td>Sec_10_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:41</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.55</td>
+				<td>Sec_10_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:41</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.56</td>
+				<td>Sec_10_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:09:41</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.57</td>
+				<td>Cos_01_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:44</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.58</td>
+				<td>Cos_01_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:09:44</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.59</td>
+				<td>Cos_01_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:45</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.60</td>
+				<td>Cos_01_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:45</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.61</td>
+				<td>Cos_02_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:48</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.62</td>
+				<td>Cos_02_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:09:48</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.63</td>
+				<td>Cos_02_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:48</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.64</td>
+				<td>Cos_02_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:48</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.65</td>
+				<td>Cos_02_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:09:48</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.66</td>
+				<td>Cos_03_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:51</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.67</td>
+				<td>Cos_03_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:09:51</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.68</td>
+				<td>Cos_03_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:51</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.69</td>
+				<td>Cos_03_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:51</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.70</td>
+				<td>Cos_03_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:09:52</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.71</td>
+				<td>Cos_04_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:55</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.72</td>
+				<td>Cos_04_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:09:55</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.73</td>
+				<td>Cos_04_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:55</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.74</td>
+				<td>Cos_04_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:55</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.75</td>
+				<td>Cos_04_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:09:55</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.76</td>
+				<td>Cos_05_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:09:58</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.77</td>
+				<td>Cos_05_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:09:58</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.78</td>
+				<td>Cos_05_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:09:58</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.79</td>
+				<td>Cos_05_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:09:58</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.80</td>
+				<td>Cos_05_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:09:58</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.81</td>
+				<td>Cos_05_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:09:59</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.82</td>
+				<td>Cos_06_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:02</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.83</td>
+				<td>Cos_06_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:02</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.84</td>
+				<td>Cos_06_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:02</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.85</td>
+				<td>Cos_06_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:02</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.86</td>
+				<td>Cos_06_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:10:02</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.87</td>
+				<td>Cos_07_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:05</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.88</td>
+				<td>Cos_07_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:05</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.89</td>
+				<td>Cos_07_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:05</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.90</td>
+				<td>Cos_07_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:05</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.91</td>
+				<td>Cos_07_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:10:05</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.92</td>
+				<td>Cos_07_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:10:05</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.93</td>
+				<td>Cos_08_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.94</td>
+				<td>Cos_08_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.95</td>
+				<td>Cos_08_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.96</td>
+				<td>Cos_08_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.97</td>
+				<td>Cos_09_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:12</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.98</td>
+				<td>Cos_09_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:12</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.99</td>
+				<td>Cos_09_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:12</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.100</td>
+				<td>Cos_09_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:12</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.101</td>
+				<td>Cos_10_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:15</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.102</td>
+				<td>Cos_10_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:15</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.103</td>
+				<td>Cos_10_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:16</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.104</td>
+				<td>Cos_10_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:16</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.105</td>
+				<td>Cos_11_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:19</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.106</td>
+				<td>Cos_11_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:19</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.107</td>
+				<td>Cos_11_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:19</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.108</td>
+				<td>Cos_11_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:19</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.109</td>
+				<td>Cos_12_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:22</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.110</td>
+				<td>Cos_12_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:22</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.111</td>
+				<td>Cos_12_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:22</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.112</td>
+				<td>Cos_12_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:22</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.113</td>
+				<td>Cos_12_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:10:22</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.114</td>
+				<td>Cos_12_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:10:22</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.115</td>
+				<td>Cos_13_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:25</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.116</td>
+				<td>Cos_13_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:26</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.117</td>
+				<td>Cos_13_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:26</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.118</td>
+				<td>Cos_13_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:26</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.119</td>
+				<td>Cos_13_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:10:26</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.120</td>
+				<td>Cos_14_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:29</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.121</td>
+				<td>Cos_14_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:29</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.122</td>
+				<td>Cos_14_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:29</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.123</td>
+				<td>Cos_14_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:29</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.124</td>
+				<td>Cos_14_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:10:29</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.125</td>
+				<td>Rel_01_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:32</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.126</td>
+				<td>Rel_01_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:32</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.127</td>
+				<td>Rel_01_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:32</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.128</td>
+				<td>Rel_01_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:32</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.129</td>
+				<td>Rel_02_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:36</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.130</td>
+				<td>Rel_02_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:36</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.131</td>
+				<td>Rel_02_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:36</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.132</td>
+				<td>Rel_02_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:36</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.133</td>
+				<td>Rel_02_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:10:36</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.134</td>
+				<td>Rel_03_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:39</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.135</td>
+				<td>Rel_03_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:39</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.136</td>
+				<td>Rel_03_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:39</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.137</td>
+				<td>Rel_03_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:39</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.138</td>
+				<td>Rel_03_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:10:39</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.139</td>
+				<td>Rel_03_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:10:39</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.140</td>
+				<td>Rel_04_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:42</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.141</td>
+				<td>Rel_04_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:42</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.142</td>
+				<td>Rel_04_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:42</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.143</td>
+				<td>Rel_04_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:43</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.144</td>
+				<td>Rel_04_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:10:43</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.145</td>
+				<td>Rel_04_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:10:43</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.146</td>
+				<td>Rel_04_opt07 is selected</td>
+				<td>Done</td>
+				<td>12:10:43</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.147</td>
+				<td>Rel_05_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:46</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.148</td>
+				<td>Rel_05_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:46</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.149</td>
+				<td>Rel_05_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:46</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.150</td>
+				<td>Rel_05_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:46</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.151</td>
+				<td>Perf_01_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:49</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.152</td>
+				<td>Perf_01_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:49</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.153</td>
+				<td>Perf_01_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:49</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.154</td>
+				<td>Perf_01_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:49</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.155</td>
+				<td>Perf_01_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:10:49</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.156</td>
+				<td>Perf_02_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:53</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.157</td>
+				<td>Perf_02_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:53</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.158</td>
+				<td>Perf_02_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:53</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.159</td>
+				<td>Perf_02_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:53</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.160</td>
+				<td>Perf_02_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:10:53</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.161</td>
+				<td>Perf_03_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:56</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.162</td>
+				<td>Perf_03_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:56</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.163</td>
+				<td>Perf_03_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:56</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.164</td>
+				<td>Perf_03_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:56</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.165</td>
+				<td>Perf_04_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:10:59</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.166</td>
+				<td>Perf_04_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:10:59</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.167</td>
+				<td>Perf_04_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:10:59</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.168</td>
+				<td>Perf_04_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:10:59</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.169</td>
+				<td>Ops_01_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:11:03</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.170</td>
+				<td>Ops_01_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:11:03</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.171</td>
+				<td>Ops_01_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:11:03</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.172</td>
+				<td>Ops_01_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:11:03</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.173</td>
+				<td>Ops_01_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:11:03</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.174</td>
+				<td>Ops_02_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:11:06</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.175</td>
+				<td>Ops_02_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:11:06</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.176</td>
+				<td>Ops_02_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:11:06</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.177</td>
+				<td>Ops_02_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:11:06</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.178</td>
+				<td>Ops_02_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:11:06</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.179</td>
+				<td>Ops_02_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:11:06</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.180</td>
+				<td>Ops_03_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:11:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.181</td>
+				<td>Ops_03_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:11:10</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.182</td>
+				<td>Ops_03_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:11:10</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.183</td>
+				<td>Ops_03_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:11:10</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.184</td>
+				<td>Ops_04_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:11:13</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.185</td>
+				<td>Ops_04_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:11:13</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.186</td>
+				<td>Ops_04_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:11:13</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.187</td>
+				<td>Ops_04_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:11:13</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.188</td>
+				<td>Ops_05_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:11:16</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.189</td>
+				<td>Ops_05_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:11:16</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.190</td>
+				<td>Ops_05_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:11:16</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.191</td>
+				<td>Ops_05_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:11:16</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.192</td>
+				<td>Ops_05_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:11:16</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.193</td>
+				<td>Ops_06_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:11:19</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.194</td>
+				<td>Ops_06_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:11:20</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.195</td>
+				<td>Ops_06_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:11:20</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>6</td>
+				<td colspan="3">Checking the Review Tab after the review is complete</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.1</td>
+				<td>OverAllStatus should be Answered</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen4.png' target="_blank">Pass</a></td>
+				<td>12:11:23</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.2</td>
+				<td>All questions of Cost are answered</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen5.png' target="_blank">Pass</a></td>
+				<td>12:11:23</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.3</td>
+				<td>All questions of Performance are answered</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen6.png' target="_blank">Pass</a></td>
+				<td>12:11:24</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.4</td>
+				<td>All questions of Security are answered</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen7.png' target="_blank">Pass</a></td>
+				<td>12:11:24</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.5</td>
+				<td>All questions of Reliability are answered</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen8.png' target="_blank">Pass</a></td>
+				<td>12:11:25</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.6</td>
+				<td>All questions of Operations are answered</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen9.png' target="_blank">Pass</a></td>
+				<td>12:11:25</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>7</td>
+				<td colspan="3">Checking the WA,HR and MR after the review is complete</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.1</td>
+				<td>Well Architected count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen10.png' target="_blank">Pass</a></td>
+				<td>12:11:29</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.2</td>
+				<td>High Risk count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen11.png' target="_blank">Pass</a></td>
+				<td>12:11:30</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.3</td>
+				<td>Medium Risk count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen12.png' target="_blank">Pass</a></td>
+				<td>12:11:30</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.4</td>
+				<td>Unanswered count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen13.png' target="_blank">Pass</a></td>
+				<td>12:11:31</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.5</td>
+				<td>Well Architected count of Cost is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen14.png' target="_blank">Pass</a></td>
+				<td>12:11:37</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.6</td>
+				<td>High Risk count of Cost is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen15.png' target="_blank">Pass</a></td>
+				<td>12:11:37</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.7</td>
+				<td>Medium Risk count of Cost is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen16.png' target="_blank">Pass</a></td>
+				<td>12:11:38</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.8</td>
+				<td>Unanswered count of Cost is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen17.png' target="_blank">Pass</a></td>
+				<td>12:11:38</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.9</td>
+				<td>Well Architected count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen18.png' target="_blank">Pass</a></td>
+				<td>12:11:45</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.10</td>
+				<td>High Risk count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen19.png' target="_blank">Pass</a></td>
+				<td>12:11:45</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.11</td>
+				<td>Medium Risk count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen20.png' target="_blank">Pass</a></td>
+				<td>12:11:46</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.12</td>
+				<td>Unanswered count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen21.png' target="_blank">Pass</a></td>
+				<td>12:11:46</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.13</td>
+				<td>Well Architected count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen22.png' target="_blank">Pass</a></td>
+				<td>12:11:53</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.14</td>
+				<td>High Risk count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen23.png' target="_blank">Pass</a></td>
+				<td>12:11:53</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.15</td>
+				<td>Medium Risk count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen24.png' target="_blank">Pass</a></td>
+				<td>12:11:53</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.16</td>
+				<td>Unanswered count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen25.png' target="_blank">Pass</a></td>
+				<td>12:11:54</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.17</td>
+				<td>Well Architected count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen26.png' target="_blank">Pass</a></td>
+				<td>12:12:00</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.18</td>
+				<td>High Risk count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen27.png' target="_blank">Pass</a></td>
+				<td>12:12:01</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.19</td>
+				<td>Medium Risk count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen28.png' target="_blank">Pass</a></td>
+				<td>12:12:01</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.20</td>
+				<td>Unanswered count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_02_120815/Screen29.png' target="_blank">Pass</a></td>
+				<td>12:12:02</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>8</td>
+				<td colspan="3">Generate PDF report</td>
+			</tr>
+
+			<tr class="statusfail">
+				<td class="stepno">8.1</td>
+				<td>Index: 1, Size: 1</td>
+				<td><a class="faillink" href='TS_Azure_02_120815/Screen30.png' target="_blank">Fail</a></td>
+				<td>12:12:17</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>9</td>
+				<td colspan="3">Delete Workload</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">9.1</td>
+				<td>Click Delete workload button</td>
+				<td>Done</td>
+				<td>12:12:17</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>10</td>
+				<td colspan="3">Logout of the appication</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">10.1</td>
+				<td>Logout clicked</td>
+				<td>Done</td>
+				<td>12:12:21</td>
+			</tr>
+
+			<tr class="tcfooter">
+			<td colspan="4" align="Center">
+				PASS:<font class="statuspass">29</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				FAIL:<font class="statusfail">1</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				Total Duration:00: 04: 08
+			</td></tr></table><span id="st2" class="hidden"><TCStatus>Fail</TCStaus></span><span id="day2" class="hidden">1</span></td></tr>	
+	<tr>
+		<td width="45px" class="collapsebutton" rowspan="2"><span id="exp3" onClick="hideshow('3')">[+]</span></td>
+		<td width="775px" class="tcname" id="tsname3"><TestName>3. TS_Azure_03</TestName></td>
+		<td width="80px" class="tcstatus" rowspan="2"><span id="tststatus3" >TBD</span></td>
+	</tr>
+	<tr>
+		<td class="tcdesc" id="tsdesc3"><TestDescription>Azure workload End-to-End flow</TestDescription></td>
+	</tr>
+	<tr class="stepstbl_notvis" id="tst3"><td class="tccontainer" colspan="3">
+		<table class="stepstbl" width="100%">
+			<tr class="step_head">
+				<td width="45px">S No</td>
+				<td width="700px">Step Description</td>
+				<td width="75px">Status</td>
+				<td width="80px">Time</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>1</td>
+				<td colspan="3">Login to CloudForte Unav Application</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.1</td>
+				<td>Username is entered</td>
+				<td>Done</td>
+				<td>12:12:29</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.2</td>
+				<td>Password is entered</td>
+				<td>Done</td>
+				<td>12:12:29</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.3</td>
+				<td>Login button is entered</td>
+				<td>Done</td>
+				<td>12:12:29</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>2</td>
+				<td colspan="3">Create Application workload</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">2.1</td>
+				<td>Cloud Native radio button is selected</td>
+				<td>Done</td>
+				<td>12:12:34</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">2.2</td>
+				<td>Define Workload button is selected</td>
+				<td>Done</td>
+				<td>12:12:34</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>3</td>
+				<td colspan="3">Enter Workload details in Define Cloud Native Workload page</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.1</td>
+				<td>Workload name is entered as Azure 1236</td>
+				<td>Done</td>
+				<td>12:12:39</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.2</td>
+				<td>Workload Description is entered as Azure 1235</td>
+				<td>Done</td>
+				<td>12:12:39</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.3</td>
+				<td>Cloud Provider is selected as azure</td>
+				<td>Done</td>
+				<td>12:12:43</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.4</td>
+				<td>Region is selected as us-east-1</td>
+				<td>Done</td>
+				<td>12:12:49</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.5</td>
+				<td>Industry Type is selected as agriculture</td>
+				<td>Done</td>
+				<td>12:12:55</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.6</td>
+				<td>Industry is selected as agriculture</td>
+				<td>Done</td>
+				<td>12:13:01</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.7</td>
+				<td>Environment is selected as Production</td>
+				<td>Done</td>
+				<td>12:13:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.8</td>
+				<td>Account ID is entered as 21314;123134</td>
+				<td>Done</td>
+				<td>12:13:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.9</td>
+				<td>Define Workload button is clicked</td>
+				<td>Done</td>
+				<td>12:13:09</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">3.10</td>
+				<td>Azure 1236 Workload created successfully</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen1.png' target="_blank">Pass</a></td>
+				<td>12:13:13</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>4</td>
+				<td colspan="3">Checking the Review Tab before starting the review</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">4.1</td>
+				<td>Cloud Service Provider of the Workload is azure</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen2.png' target="_blank">Pass</a></td>
+				<td>12:13:13</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">4.2</td>
+				<td>Default pillar and number of questions is correct</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen3.png' target="_blank">Pass</a></td>
+				<td>12:13:14</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">4.3</td>
+				<td>Start Review button clicked</td>
+				<td>Done</td>
+				<td>12:13:14</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>5</td>
+				<td colspan="3">Start the Review by answering the Questionaire</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.1</td>
+				<td>Sec_01_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:13:17</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.2</td>
+				<td>Sec_01_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:13:17</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.3</td>
+				<td>Sec_01_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:13:17</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.4</td>
+				<td>Sec_01_opt07 is selected</td>
+				<td>Done</td>
+				<td>12:13:17</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.5</td>
+				<td>Sec_01_opt09 is selected</td>
+				<td>Done</td>
+				<td>12:13:17</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.6</td>
+				<td>Sec_02_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:13:20</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.7</td>
+				<td>Sec_02_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:13:20</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.8</td>
+				<td>Sec_02_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:13:21</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.9</td>
+				<td>Sec_03_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:13:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.10</td>
+				<td>Sec_03_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:13:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.11</td>
+				<td>Sec_03_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:13:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.12</td>
+				<td>Sec_04_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:13:27</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.13</td>
+				<td>Sec_04_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:13:27</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.14</td>
+				<td>Sec_05_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:13:30</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.15</td>
+				<td>Sec_05_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:13:30</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.16</td>
+				<td>Sec_06_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:13:33</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.17</td>
+				<td>Sec_06_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:13:33</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.18</td>
+				<td>Sec_06_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:13:33</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.19</td>
+				<td>Sec_07_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:13:37</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.20</td>
+				<td>Sec_07_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:13:37</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.21</td>
+				<td>Sec_07_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:13:37</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.22</td>
+				<td>Sec_08_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:13:40</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.23</td>
+				<td>Sec_08_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:13:40</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.24</td>
+				<td>Sec_09_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:13:43</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.25</td>
+				<td>Sec_09_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:13:43</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.26</td>
+				<td>Sec_09_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:13:43</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.27</td>
+				<td>Sec_10_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:13:46</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.28</td>
+				<td>Sec_10_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:13:46</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.29</td>
+				<td>Sec_10_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:13:46</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.30</td>
+				<td>Cos_01_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:13:50</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.31</td>
+				<td>Cos_01_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:13:50</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.32</td>
+				<td>Cos_02_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:13:53</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.33</td>
+				<td>Cos_02_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:13:53</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.34</td>
+				<td>Cos_03_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:13:56</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.35</td>
+				<td>Cos_03_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:13:56</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.36</td>
+				<td>Cos_03_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:13:56</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.37</td>
+				<td>Cos_04_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:13:59</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.38</td>
+				<td>Cos_04_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:13:59</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.39</td>
+				<td>Cos_05_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:14:02</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.40</td>
+				<td>Cos_05_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:14:03</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.41</td>
+				<td>Cos_05_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:14:03</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.42</td>
+				<td>Cos_06_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:14:06</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.43</td>
+				<td>Cos_06_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:14:06</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.44</td>
+				<td>Cos_06_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:14:06</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.45</td>
+				<td>Cos_07_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:14:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.46</td>
+				<td>Cos_07_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:14:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.47</td>
+				<td>Cos_07_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:14:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.48</td>
+				<td>Cos_08_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:14:12</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.49</td>
+				<td>Cos_08_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:14:12</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.50</td>
+				<td>Cos_09_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:14:15</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.51</td>
+				<td>Cos_09_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:14:15</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.52</td>
+				<td>Cos_10_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:14:19</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.53</td>
+				<td>Cos_10_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:14:19</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.54</td>
+				<td>Cos_11_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:14:22</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.55</td>
+				<td>Cos_11_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:14:22</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.56</td>
+				<td>Cos_12_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:14:25</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.57</td>
+				<td>Cos_12_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:14:25</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.58</td>
+				<td>Cos_12_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:14:25</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.59</td>
+				<td>Cos_13_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:14:28</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.60</td>
+				<td>Cos_13_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:14:28</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.61</td>
+				<td>Cos_14_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:14:31</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.62</td>
+				<td>Cos_14_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:14:31</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.63</td>
+				<td>Cos_14_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:14:31</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.64</td>
+				<td>Rel_01_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:14:35</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.65</td>
+				<td>Rel_01_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:14:35</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.66</td>
+				<td>Rel_02_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:14:38</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.67</td>
+				<td>Rel_02_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:14:38</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.68</td>
+				<td>Rel_03_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:14:41</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.69</td>
+				<td>Rel_03_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:14:41</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.70</td>
+				<td>Rel_03_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:14:41</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.71</td>
+				<td>Rel_04_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:14:44</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.72</td>
+				<td>Rel_04_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:14:44</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.73</td>
+				<td>Rel_04_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:14:44</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.74</td>
+				<td>Rel_04_opt07 is selected</td>
+				<td>Done</td>
+				<td>12:14:44</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.75</td>
+				<td>Rel_05_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:14:48</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.76</td>
+				<td>Rel_05_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:14:48</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.77</td>
+				<td>Perf_01_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:14:51</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.78</td>
+				<td>Perf_01_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:14:51</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.79</td>
+				<td>Perf_02_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:14:54</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.80</td>
+				<td>Perf_02_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:14:54</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.81</td>
+				<td>Perf_02_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:14:54</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.82</td>
+				<td>Perf_03_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:14:57</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.83</td>
+				<td>Perf_03_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:14:57</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.84</td>
+				<td>Perf_04_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:15:00</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.85</td>
+				<td>Perf_04_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:15:00</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.86</td>
+				<td>Ops_01_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:15:03</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.87</td>
+				<td>Ops_01_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:15:04</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.88</td>
+				<td>Ops_02_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:15:07</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.89</td>
+				<td>Ops_02_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:15:07</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.90</td>
+				<td>Ops_02_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:15:07</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.91</td>
+				<td>Ops_03_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:15:10</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.92</td>
+				<td>Ops_03_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:15:10</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.93</td>
+				<td>Ops_04_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:15:13</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.94</td>
+				<td>Ops_04_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:15:13</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.95</td>
+				<td>Ops_05_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:15:16</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.96</td>
+				<td>Ops_05_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:15:16</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.97</td>
+				<td>Ops_05_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:15:16</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.98</td>
+				<td>Ops_06_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:15:19</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.99</td>
+				<td>Ops_06_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:15:20</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>6</td>
+				<td colspan="3">Checking the Review Tab after the review is complete</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.1</td>
+				<td>OverAllStatus should be Answered</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen4.png' target="_blank">Pass</a></td>
+				<td>12:15:23</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.2</td>
+				<td>All questions of Cost are answered</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen5.png' target="_blank">Pass</a></td>
+				<td>12:15:23</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.3</td>
+				<td>All questions of Performance are answered</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen6.png' target="_blank">Pass</a></td>
+				<td>12:15:24</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.4</td>
+				<td>All questions of Security are answered</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen7.png' target="_blank">Pass</a></td>
+				<td>12:15:24</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.5</td>
+				<td>All questions of Reliability are answered</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen8.png' target="_blank">Pass</a></td>
+				<td>12:15:24</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.6</td>
+				<td>All questions of Operations are answered</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen9.png' target="_blank">Pass</a></td>
+				<td>12:15:25</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>7</td>
+				<td colspan="3">Checking the WA,HR and MR after the review is complete</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.1</td>
+				<td>Well Architected count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen10.png' target="_blank">Pass</a></td>
+				<td>12:15:29</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.2</td>
+				<td>High Risk count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen11.png' target="_blank">Pass</a></td>
+				<td>12:15:29</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.3</td>
+				<td>Medium Risk count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen12.png' target="_blank">Pass</a></td>
+				<td>12:15:30</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.4</td>
+				<td>Unanswered count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen13.png' target="_blank">Pass</a></td>
+				<td>12:15:30</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.5</td>
+				<td>Well Architected count of Cost is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen14.png' target="_blank">Pass</a></td>
+				<td>12:15:37</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.6</td>
+				<td>High Risk count of Cost is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen15.png' target="_blank">Pass</a></td>
+				<td>12:15:37</td>
+			</tr>
+
+			<tr class="statusfail">
+				<td class="stepno">7.7</td>
+				<td>Medium Risk count of Cost is calculated correctly</td>
+				<td><a class="faillink" href='TS_Azure_03_121223/Screen16.png' target="_blank">Fail</a></td>
+				<td>12:15:37</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.8</td>
+				<td>Unanswered count of Cost is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen17.png' target="_blank">Pass</a></td>
+				<td>12:15:38</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.9</td>
+				<td>Well Architected count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen18.png' target="_blank">Pass</a></td>
+				<td>12:15:44</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.10</td>
+				<td>High Risk count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen19.png' target="_blank">Pass</a></td>
+				<td>12:15:45</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.11</td>
+				<td>Medium Risk count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen20.png' target="_blank">Pass</a></td>
+				<td>12:15:45</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.12</td>
+				<td>Unanswered count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen21.png' target="_blank">Pass</a></td>
+				<td>12:15:45</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.13</td>
+				<td>Well Architected count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen22.png' target="_blank">Pass</a></td>
+				<td>12:15:53</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.14</td>
+				<td>High Risk count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen23.png' target="_blank">Pass</a></td>
+				<td>12:15:53</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.15</td>
+				<td>Medium Risk count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen24.png' target="_blank">Pass</a></td>
+				<td>12:15:53</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.16</td>
+				<td>Unanswered count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen25.png' target="_blank">Pass</a></td>
+				<td>12:15:54</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.17</td>
+				<td>Well Architected count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen26.png' target="_blank">Pass</a></td>
+				<td>12:16:00</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.18</td>
+				<td>High Risk count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen27.png' target="_blank">Pass</a></td>
+				<td>12:16:01</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.19</td>
+				<td>Medium Risk count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen28.png' target="_blank">Pass</a></td>
+				<td>12:16:01</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.20</td>
+				<td>Unanswered count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen29.png' target="_blank">Pass</a></td>
+				<td>12:16:02</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>8</td>
+				<td colspan="3">Generate PDF report</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">8.1</td>
+				<td>PDF Report generated successfully</td>
+				<td><a class="passlink" href='TS_Azure_03_121223/Screen30.png' target="_blank">Pass</a></td>
+				<td>12:16:33</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>9</td>
+				<td colspan="3">Delete Workload</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">9.1</td>
+				<td>Click Delete workload button</td>
+				<td>Done</td>
+				<td>12:16:33</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>10</td>
+				<td colspan="3">Logout of the appication</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">10.1</td>
+				<td>Logout clicked</td>
+				<td>Done</td>
+				<td>12:16:36</td>
+			</tr>
+
+			<tr class="tcfooter">
+			<td colspan="4" align="Center">
+				PASS:<font class="statuspass">29</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				FAIL:<font class="statusfail">1</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				Total Duration:00: 04: 15
+			</td></tr></table><span id="st3" class="hidden"><TCStatus>Fail</TCStaus></span><span id="day3" class="hidden">1</span></td></tr>	
+	<tr>
+		<td width="45px" class="collapsebutton" rowspan="2"><span id="exp4" onClick="hideshow('4')">[+]</span></td>
+		<td width="775px" class="tcname" id="tsname4"><TestName>4. TS_Azure_04</TestName></td>
+		<td width="80px" class="tcstatus" rowspan="2"><span id="tststatus4" >TBD</span></td>
+	</tr>
+	<tr>
+		<td class="tcdesc" id="tsdesc4"><TestDescription>Azure workload End-to-End flow</TestDescription></td>
+	</tr>
+	<tr class="stepstbl_notvis" id="tst4"><td class="tccontainer" colspan="3">
+		<table class="stepstbl" width="100%">
+			<tr class="step_head">
+				<td width="45px">S No</td>
+				<td width="700px">Step Description</td>
+				<td width="75px">Status</td>
+				<td width="80px">Time</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>1</td>
+				<td colspan="3">Login to CloudForte Unav Application</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.1</td>
+				<td>Username is entered</td>
+				<td>Done</td>
+				<td>12:16:44</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.2</td>
+				<td>Password is entered</td>
+				<td>Done</td>
+				<td>12:16:44</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.3</td>
+				<td>Login button is entered</td>
+				<td>Done</td>
+				<td>12:16:44</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>2</td>
+				<td colspan="3">Create Application workload</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">2.1</td>
+				<td>Cloud Native radio button is selected</td>
+				<td>Done</td>
+				<td>12:16:49</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">2.2</td>
+				<td>Define Workload button is selected</td>
+				<td>Done</td>
+				<td>12:16:49</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>3</td>
+				<td colspan="3">Enter Workload details in Define Cloud Native Workload page</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.1</td>
+				<td>Workload name is entered as Azure 1237</td>
+				<td>Done</td>
+				<td>12:16:54</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.2</td>
+				<td>Workload Description is entered as Azure 1235</td>
+				<td>Done</td>
+				<td>12:16:55</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.3</td>
+				<td>Cloud Provider is selected as azure</td>
+				<td>Done</td>
+				<td>12:16:58</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.4</td>
+				<td>Region is selected as us-east-1</td>
+				<td>Done</td>
+				<td>12:17:04</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.5</td>
+				<td>Industry Type is selected as agriculture</td>
+				<td>Done</td>
+				<td>12:17:10</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.6</td>
+				<td>Industry is selected as agriculture</td>
+				<td>Done</td>
+				<td>12:17:16</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.7</td>
+				<td>Environment is selected as Production</td>
+				<td>Done</td>
+				<td>12:17:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.8</td>
+				<td>Account ID is entered as 21314;123134</td>
+				<td>Done</td>
+				<td>12:17:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.9</td>
+				<td>Define Workload button is clicked</td>
+				<td>Done</td>
+				<td>12:17:24</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">3.10</td>
+				<td>Azure 1237 Workload created successfully</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen1.png' target="_blank">Pass</a></td>
+				<td>12:17:28</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>4</td>
+				<td colspan="3">Checking the Review Tab before starting the review</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">4.1</td>
+				<td>Cloud Service Provider of the Workload is azure</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen2.png' target="_blank">Pass</a></td>
+				<td>12:17:28</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">4.2</td>
+				<td>Default pillar and number of questions is correct</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen3.png' target="_blank">Pass</a></td>
+				<td>12:17:29</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">4.3</td>
+				<td>Start Review button clicked</td>
+				<td>Done</td>
+				<td>12:17:29</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>5</td>
+				<td colspan="3">Start the Review by answering the Questionaire</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.1</td>
+				<td>Sec_01_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:17:32</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.2</td>
+				<td>Sec_01_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:17:32</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.3</td>
+				<td>Sec_01_opt08 is selected</td>
+				<td>Done</td>
+				<td>12:17:32</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.4</td>
+				<td>Sec_02_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:17:35</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.5</td>
+				<td>Sec_02_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:17:35</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.6</td>
+				<td>Sec_02_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:17:35</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.7</td>
+				<td>Sec_02_opt07 is selected</td>
+				<td>Done</td>
+				<td>12:17:35</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.8</td>
+				<td>Sec_03_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:17:38</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.9</td>
+				<td>Sec_03_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:17:39</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.10</td>
+				<td>Sec_04_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:17:42</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.11</td>
+				<td>Sec_04_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:17:42</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.12</td>
+				<td>Sec_05_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:17:45</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.13</td>
+				<td>Sec_05_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:17:45</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.14</td>
+				<td>Sec_05_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:17:45</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.15</td>
+				<td>Sec_06_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:17:48</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.16</td>
+				<td>Sec_06_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:17:48</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.17</td>
+				<td>Sec_07_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:17:51</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.18</td>
+				<td>Sec_07_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:17:51</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.19</td>
+				<td>Sec_07_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:17:51</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.20</td>
+				<td>Sec_08_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:17:54</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.21</td>
+				<td>Sec_08_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:17:55</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.22</td>
+				<td>Sec_08_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:17:55</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.23</td>
+				<td>Sec_09_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:17:58</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.24</td>
+				<td>Sec_09_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:17:58</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.25</td>
+				<td>Sec_09_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:17:58</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.26</td>
+				<td>Sec_10_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:18:01</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.27</td>
+				<td>Sec_10_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:18:01</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.28</td>
+				<td>Cos_01_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:18:04</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.29</td>
+				<td>Cos_01_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:18:04</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.30</td>
+				<td>Cos_02_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:18:07</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.31</td>
+				<td>Cos_02_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:18:07</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.32</td>
+				<td>Cos_02_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:18:07</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.33</td>
+				<td>Cos_03_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:18:11</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.34</td>
+				<td>Cos_03_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:18:11</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.35</td>
+				<td>Cos_04_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:18:14</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.36</td>
+				<td>Cos_04_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:18:14</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.37</td>
+				<td>Cos_04_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:18:14</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.38</td>
+				<td>Cos_05_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:18:17</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.39</td>
+				<td>Cos_05_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:18:17</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.40</td>
+				<td>Cos_05_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:18:17</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.41</td>
+				<td>Cos_06_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:18:20</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.42</td>
+				<td>Cos_06_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:18:20</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.43</td>
+				<td>Cos_07_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:18:23</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.44</td>
+				<td>Cos_07_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:18:23</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.45</td>
+				<td>Cos_07_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:18:23</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.46</td>
+				<td>Cos_08_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:18:27</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.47</td>
+				<td>Cos_08_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:18:27</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.48</td>
+				<td>Cos_09_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:18:30</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.49</td>
+				<td>Cos_09_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:18:30</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.50</td>
+				<td>Cos_10_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:18:33</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.51</td>
+				<td>Cos_10_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:18:33</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.52</td>
+				<td>Cos_11_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:18:36</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.53</td>
+				<td>Cos_11_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:18:36</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.54</td>
+				<td>Cos_12_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:18:39</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.55</td>
+				<td>Cos_12_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:18:39</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.56</td>
+				<td>Cos_12_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:18:39</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.57</td>
+				<td>Cos_13_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:18:43</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.58</td>
+				<td>Cos_13_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:18:43</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.59</td>
+				<td>Cos_13_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:18:43</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.60</td>
+				<td>Cos_14_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:18:46</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.61</td>
+				<td>Cos_14_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:18:46</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.62</td>
+				<td>Rel_01_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:18:49</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.63</td>
+				<td>Rel_01_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:18:49</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.64</td>
+				<td>Rel_02_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:18:52</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.65</td>
+				<td>Rel_02_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:18:52</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.66</td>
+				<td>Rel_02_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:18:52</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.67</td>
+				<td>Rel_03_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:18:55</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.68</td>
+				<td>Rel_03_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:18:56</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.69</td>
+				<td>Rel_03_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:18:56</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.70</td>
+				<td>Rel_04_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:18:59</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.71</td>
+				<td>Rel_04_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:18:59</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.72</td>
+				<td>Rel_04_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:18:59</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.73</td>
+				<td>Rel_05_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:19:02</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.74</td>
+				<td>Rel_05_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:19:02</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.75</td>
+				<td>Perf_01_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:19:05</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.76</td>
+				<td>Perf_01_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:19:05</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.77</td>
+				<td>Perf_01_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:19:05</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.78</td>
+				<td>Perf_02_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:19:08</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.79</td>
+				<td>Perf_02_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:19:08</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.80</td>
+				<td>Perf_03_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:19:11</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.81</td>
+				<td>Perf_03_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:19:12</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.82</td>
+				<td>Perf_04_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:19:15</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.83</td>
+				<td>Perf_04_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:19:15</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.84</td>
+				<td>Ops_01_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:19:18</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.85</td>
+				<td>Ops_01_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:19:18</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.86</td>
+				<td>Ops_01_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:19:18</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.87</td>
+				<td>Ops_02_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:19:21</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.88</td>
+				<td>Ops_02_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:19:21</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.89</td>
+				<td>Ops_02_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:19:21</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.90</td>
+				<td>Ops_03_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:19:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.91</td>
+				<td>Ops_03_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:19:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.92</td>
+				<td>Ops_04_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:19:27</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.93</td>
+				<td>Ops_04_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:19:28</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.94</td>
+				<td>Ops_05_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:19:31</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.95</td>
+				<td>Ops_05_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:19:31</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.96</td>
+				<td>Ops_06_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:19:34</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.97</td>
+				<td>Ops_06_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:19:34</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.98</td>
+				<td>Ops_06_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:19:34</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>6</td>
+				<td colspan="3">Checking the Review Tab after the review is complete</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.1</td>
+				<td>OverAllStatus should be Answered</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen4.png' target="_blank">Pass</a></td>
+				<td>12:19:37</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.2</td>
+				<td>All questions of Cost are answered</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen5.png' target="_blank">Pass</a></td>
+				<td>12:19:38</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.3</td>
+				<td>All questions of Performance are answered</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen6.png' target="_blank">Pass</a></td>
+				<td>12:19:38</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.4</td>
+				<td>All questions of Security are answered</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen7.png' target="_blank">Pass</a></td>
+				<td>12:19:39</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.5</td>
+				<td>All questions of Reliability are answered</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen8.png' target="_blank">Pass</a></td>
+				<td>12:19:39</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.6</td>
+				<td>All questions of Operations are answered</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen9.png' target="_blank">Pass</a></td>
+				<td>12:19:39</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>7</td>
+				<td colspan="3">Checking the WA,HR and MR after the review is complete</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.1</td>
+				<td>Well Architected count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen10.png' target="_blank">Pass</a></td>
+				<td>12:19:43</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.2</td>
+				<td>High Risk count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen11.png' target="_blank">Pass</a></td>
+				<td>12:19:44</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.3</td>
+				<td>Medium Risk count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen12.png' target="_blank">Pass</a></td>
+				<td>12:19:44</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.4</td>
+				<td>Unanswered count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen13.png' target="_blank">Pass</a></td>
+				<td>12:19:44</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.5</td>
+				<td>Well Architected count of Cost is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen14.png' target="_blank">Pass</a></td>
+				<td>12:19:51</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.6</td>
+				<td>High Risk count of Cost is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen15.png' target="_blank">Pass</a></td>
+				<td>12:19:51</td>
+			</tr>
+
+			<tr class="statusfail">
+				<td class="stepno">7.7</td>
+				<td>Medium Risk count of Cost is calculated correctly</td>
+				<td><a class="faillink" href='TS_Azure_04_121639/Screen16.png' target="_blank">Fail</a></td>
+				<td>12:19:52</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.8</td>
+				<td>Unanswered count of Cost is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen17.png' target="_blank">Pass</a></td>
+				<td>12:19:52</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.9</td>
+				<td>Well Architected count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen18.png' target="_blank">Pass</a></td>
+				<td>12:19:59</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.10</td>
+				<td>High Risk count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen19.png' target="_blank">Pass</a></td>
+				<td>12:19:59</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.11</td>
+				<td>Medium Risk count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen20.png' target="_blank">Pass</a></td>
+				<td>12:20:00</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.12</td>
+				<td>Unanswered count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen21.png' target="_blank">Pass</a></td>
+				<td>12:20:00</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.13</td>
+				<td>Well Architected count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen22.png' target="_blank">Pass</a></td>
+				<td>12:20:07</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.14</td>
+				<td>High Risk count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen23.png' target="_blank">Pass</a></td>
+				<td>12:20:07</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.15</td>
+				<td>Medium Risk count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen24.png' target="_blank">Pass</a></td>
+				<td>12:20:07</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.16</td>
+				<td>Unanswered count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen25.png' target="_blank">Pass</a></td>
+				<td>12:20:08</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.17</td>
+				<td>Well Architected count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen26.png' target="_blank">Pass</a></td>
+				<td>12:20:14</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.18</td>
+				<td>High Risk count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen27.png' target="_blank">Pass</a></td>
+				<td>12:20:15</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.19</td>
+				<td>Medium Risk count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen28.png' target="_blank">Pass</a></td>
+				<td>12:20:15</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.20</td>
+				<td>Unanswered count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen29.png' target="_blank">Pass</a></td>
+				<td>12:20:16</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>8</td>
+				<td colspan="3">Generate PDF report</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">8.1</td>
+				<td>PDF Report generated successfully</td>
+				<td><a class="passlink" href='TS_Azure_04_121639/Screen30.png' target="_blank">Pass</a></td>
+				<td>12:20:47</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>9</td>
+				<td colspan="3">Delete Workload</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">9.1</td>
+				<td>Click Delete workload button</td>
+				<td>Done</td>
+				<td>12:20:47</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>10</td>
+				<td colspan="3">Logout of the appication</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">10.1</td>
+				<td>Logout clicked</td>
+				<td>Done</td>
+				<td>12:20:50</td>
+			</tr>
+
+			<tr class="tcfooter">
+			<td colspan="4" align="Center">
+				PASS:<font class="statuspass">29</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				FAIL:<font class="statusfail">1</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				Total Duration:00: 04: 13
+			</td></tr></table><span id="st4" class="hidden"><TCStatus>Fail</TCStaus></span><span id="day4" class="hidden">1</span></td></tr>	
+	<tr>
+		<td width="45px" class="collapsebutton" rowspan="2"><span id="exp5" onClick="hideshow('5')">[+]</span></td>
+		<td width="775px" class="tcname" id="tsname5"><TestName>5. TS_Azure_05</TestName></td>
+		<td width="80px" class="tcstatus" rowspan="2"><span id="tststatus5" >TBD</span></td>
+	</tr>
+	<tr>
+		<td class="tcdesc" id="tsdesc5"><TestDescription>Azure workload End-to-End flow</TestDescription></td>
+	</tr>
+	<tr class="stepstbl_notvis" id="tst5"><td class="tccontainer" colspan="3">
+		<table class="stepstbl" width="100%">
+			<tr class="step_head">
+				<td width="45px">S No</td>
+				<td width="700px">Step Description</td>
+				<td width="75px">Status</td>
+				<td width="80px">Time</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>1</td>
+				<td colspan="3">Login to CloudForte Unav Application</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.1</td>
+				<td>Username is entered</td>
+				<td>Done</td>
+				<td>12:20:58</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.2</td>
+				<td>Password is entered</td>
+				<td>Done</td>
+				<td>12:20:58</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">1.3</td>
+				<td>Login button is entered</td>
+				<td>Done</td>
+				<td>12:20:58</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>2</td>
+				<td colspan="3">Create Application workload</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">2.1</td>
+				<td>Cloud Native radio button is selected</td>
+				<td>Done</td>
+				<td>12:21:03</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">2.2</td>
+				<td>Define Workload button is selected</td>
+				<td>Done</td>
+				<td>12:21:03</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>3</td>
+				<td colspan="3">Enter Workload details in Define Cloud Native Workload page</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.1</td>
+				<td>Workload name is entered as Azure 1238</td>
+				<td>Done</td>
+				<td>12:21:08</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.2</td>
+				<td>Workload Description is entered as Azure 1235</td>
+				<td>Done</td>
+				<td>12:21:08</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.3</td>
+				<td>Cloud Provider is selected as azure</td>
+				<td>Done</td>
+				<td>12:21:12</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.4</td>
+				<td>Region is selected as us-east-1</td>
+				<td>Done</td>
+				<td>12:21:18</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.5</td>
+				<td>Industry Type is selected as agriculture</td>
+				<td>Done</td>
+				<td>12:21:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.6</td>
+				<td>Industry is selected as agriculture</td>
+				<td>Done</td>
+				<td>12:21:30</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.7</td>
+				<td>Environment is selected as Production</td>
+				<td>Done</td>
+				<td>12:21:38</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.8</td>
+				<td>Account ID is entered as 21314;123134</td>
+				<td>Done</td>
+				<td>12:21:38</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">3.9</td>
+				<td>Define Workload button is clicked</td>
+				<td>Done</td>
+				<td>12:21:38</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">3.10</td>
+				<td>Azure 1238 Workload created successfully</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen1.png' target="_blank">Pass</a></td>
+				<td>12:21:42</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>4</td>
+				<td colspan="3">Checking the Review Tab before starting the review</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">4.1</td>
+				<td>Cloud Service Provider of the Workload is azure</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen2.png' target="_blank">Pass</a></td>
+				<td>12:21:42</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">4.2</td>
+				<td>Default pillar and number of questions is correct</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen3.png' target="_blank">Pass</a></td>
+				<td>12:21:42</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">4.3</td>
+				<td>Start Review button clicked</td>
+				<td>Done</td>
+				<td>12:21:43</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>5</td>
+				<td colspan="3">Start the Review by answering the Questionaire</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.1</td>
+				<td>Sec_01_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:21:46</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.2</td>
+				<td>Sec_01_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:21:46</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.3</td>
+				<td>Sec_01_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:21:46</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.4</td>
+				<td>Sec_01_opt07 is selected</td>
+				<td>Done</td>
+				<td>12:21:46</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.5</td>
+				<td>Sec_01_opt08 is selected</td>
+				<td>Done</td>
+				<td>12:21:46</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.6</td>
+				<td>Sec_02_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:21:49</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.7</td>
+				<td>Sec_02_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:21:49</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.8</td>
+				<td>Sec_02_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:21:49</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.9</td>
+				<td>Sec_02_opt07 is selected</td>
+				<td>Done</td>
+				<td>12:21:49</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.10</td>
+				<td>Sec_03_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:21:52</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.11</td>
+				<td>Sec_03_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:21:52</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.12</td>
+				<td>Sec_04_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:21:55</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.13</td>
+				<td>Sec_04_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:21:56</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.14</td>
+				<td>Sec_05_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:21:59</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.15</td>
+				<td>Sec_05_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:21:59</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.16</td>
+				<td>Sec_06_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:22:02</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.17</td>
+				<td>Sec_06_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:22:02</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.18</td>
+				<td>Sec_06_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:22:02</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.19</td>
+				<td>Sec_07_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:22:05</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.20</td>
+				<td>Sec_07_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:22:05</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.21</td>
+				<td>Sec_07_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:22:05</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.22</td>
+				<td>Sec_08_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:22:08</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.23</td>
+				<td>Sec_08_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:22:08</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.24</td>
+				<td>Sec_09_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:22:12</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.25</td>
+				<td>Sec_09_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:22:12</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.26</td>
+				<td>Sec_09_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:22:12</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.27</td>
+				<td>Sec_09_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:22:12</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.28</td>
+				<td>Sec_10_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:22:15</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.29</td>
+				<td>Sec_10_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:22:15</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.30</td>
+				<td>Cos_01_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:22:18</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.31</td>
+				<td>Cos_01_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:22:18</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.32</td>
+				<td>Cos_02_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:22:21</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.33</td>
+				<td>Cos_02_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:22:21</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.34</td>
+				<td>Cos_03_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:22:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.35</td>
+				<td>Cos_03_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:22:24</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.36</td>
+				<td>Cos_03_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:22:25</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.37</td>
+				<td>Cos_04_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:22:28</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.38</td>
+				<td>Cos_04_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:22:28</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.39</td>
+				<td>Cos_04_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:22:28</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.40</td>
+				<td>Cos_05_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:22:31</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.41</td>
+				<td>Cos_05_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:22:31</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.42</td>
+				<td>Cos_06_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:22:34</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.43</td>
+				<td>Cos_06_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:22:34</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.44</td>
+				<td>Cos_06_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:22:34</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.45</td>
+				<td>Cos_07_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:22:37</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.46</td>
+				<td>Cos_07_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:22:37</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.47</td>
+				<td>Cos_07_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:22:37</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.48</td>
+				<td>Cos_08_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:22:40</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.49</td>
+				<td>Cos_08_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:22:41</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.50</td>
+				<td>Cos_09_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:22:44</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.51</td>
+				<td>Cos_09_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:22:44</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.52</td>
+				<td>Cos_10_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:22:47</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.53</td>
+				<td>Cos_10_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:22:47</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.54</td>
+				<td>Cos_11_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:22:50</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.55</td>
+				<td>Cos_11_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:22:50</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.56</td>
+				<td>Cos_12_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:22:53</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.57</td>
+				<td>Cos_12_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:22:53</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.58</td>
+				<td>Cos_12_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:22:53</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.59</td>
+				<td>Cos_13_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:22:56</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.60</td>
+				<td>Cos_13_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:22:56</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.61</td>
+				<td>Cos_13_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:22:57</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.62</td>
+				<td>Cos_14_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:23:00</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.63</td>
+				<td>Cos_14_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:23:00</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.64</td>
+				<td>Rel_01_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:23:03</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.65</td>
+				<td>Rel_01_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:23:03</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.66</td>
+				<td>Rel_02_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:23:06</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.67</td>
+				<td>Rel_02_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:23:06</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.68</td>
+				<td>Rel_03_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:23:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.69</td>
+				<td>Rel_03_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:23:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.70</td>
+				<td>Rel_03_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:23:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.71</td>
+				<td>Rel_03_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:23:09</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.72</td>
+				<td>Rel_04_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:23:13</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.73</td>
+				<td>Rel_04_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:23:13</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.74</td>
+				<td>Rel_04_opt07 is selected</td>
+				<td>Done</td>
+				<td>12:23:13</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.75</td>
+				<td>Rel_05_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:23:16</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.76</td>
+				<td>Rel_05_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:23:16</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.77</td>
+				<td>Perf_01_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:23:19</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.78</td>
+				<td>Perf_01_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:23:19</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.79</td>
+				<td>Perf_01_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:23:19</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.80</td>
+				<td>Perf_02_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:23:22</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.81</td>
+				<td>Perf_02_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:23:22</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.82</td>
+				<td>Perf_03_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:23:25</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.83</td>
+				<td>Perf_03_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:23:25</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.84</td>
+				<td>Perf_04_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:23:28</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.85</td>
+				<td>Perf_04_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:23:29</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.86</td>
+				<td>Ops_01_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:23:32</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.87</td>
+				<td>Ops_01_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:23:32</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.88</td>
+				<td>Ops_02_opt01 is selected</td>
+				<td>Done</td>
+				<td>12:23:35</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.89</td>
+				<td>Ops_02_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:23:35</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.90</td>
+				<td>Ops_02_opt05 is selected</td>
+				<td>Done</td>
+				<td>12:23:35</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.91</td>
+				<td>Ops_02_opt06 is selected</td>
+				<td>Done</td>
+				<td>12:23:35</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.92</td>
+				<td>Ops_03_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:23:38</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.93</td>
+				<td>Ops_03_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:23:38</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.94</td>
+				<td>Ops_04_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:23:41</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.95</td>
+				<td>Ops_04_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:23:41</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.96</td>
+				<td>Ops_05_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:23:44</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.97</td>
+				<td>Ops_05_opt04 is selected</td>
+				<td>Done</td>
+				<td>12:23:45</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.98</td>
+				<td>Ops_06_opt02 is selected</td>
+				<td>Done</td>
+				<td>12:23:48</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">5.99</td>
+				<td>Ops_06_opt03 is selected</td>
+				<td>Done</td>
+				<td>12:23:48</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>6</td>
+				<td colspan="3">Checking the Review Tab after the review is complete</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.1</td>
+				<td>OverAllStatus should be Answered</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen4.png' target="_blank">Pass</a></td>
+				<td>12:23:51</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.2</td>
+				<td>All questions of Cost are answered</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen5.png' target="_blank">Pass</a></td>
+				<td>12:23:52</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.3</td>
+				<td>All questions of Performance are answered</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen6.png' target="_blank">Pass</a></td>
+				<td>12:23:52</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.4</td>
+				<td>All questions of Security are answered</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen7.png' target="_blank">Pass</a></td>
+				<td>12:23:52</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.5</td>
+				<td>All questions of Reliability are answered</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen8.png' target="_blank">Pass</a></td>
+				<td>12:23:53</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">6.6</td>
+				<td>All questions of Operations are answered</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen9.png' target="_blank">Pass</a></td>
+				<td>12:23:53</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>7</td>
+				<td colspan="3">Checking the WA,HR and MR after the review is complete</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.1</td>
+				<td>Well Architected count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen10.png' target="_blank">Pass</a></td>
+				<td>12:23:57</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.2</td>
+				<td>High Risk count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen11.png' target="_blank">Pass</a></td>
+				<td>12:23:57</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.3</td>
+				<td>Medium Risk count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen12.png' target="_blank">Pass</a></td>
+				<td>12:23:58</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.4</td>
+				<td>Unanswered count of Security is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen13.png' target="_blank">Pass</a></td>
+				<td>12:23:58</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.5</td>
+				<td>Well Architected count of Cost is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen14.png' target="_blank">Pass</a></td>
+				<td>12:24:05</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.6</td>
+				<td>High Risk count of Cost is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen15.png' target="_blank">Pass</a></td>
+				<td>12:24:05</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.7</td>
+				<td>Medium Risk count of Cost is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen16.png' target="_blank">Pass</a></td>
+				<td>12:24:06</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.8</td>
+				<td>Unanswered count of Cost is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen17.png' target="_blank">Pass</a></td>
+				<td>12:24:06</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.9</td>
+				<td>Well Architected count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen18.png' target="_blank">Pass</a></td>
+				<td>12:24:13</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.10</td>
+				<td>High Risk count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen19.png' target="_blank">Pass</a></td>
+				<td>12:24:13</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.11</td>
+				<td>Medium Risk count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen20.png' target="_blank">Pass</a></td>
+				<td>12:24:14</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.12</td>
+				<td>Unanswered count of Performance is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen21.png' target="_blank">Pass</a></td>
+				<td>12:24:14</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.13</td>
+				<td>Well Architected count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen22.png' target="_blank">Pass</a></td>
+				<td>12:24:21</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.14</td>
+				<td>High Risk count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen23.png' target="_blank">Pass</a></td>
+				<td>12:24:21</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.15</td>
+				<td>Medium Risk count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen24.png' target="_blank">Pass</a></td>
+				<td>12:24:21</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.16</td>
+				<td>Unanswered count of Reliability is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen25.png' target="_blank">Pass</a></td>
+				<td>12:24:22</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.17</td>
+				<td>Well Architected count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen26.png' target="_blank">Pass</a></td>
+				<td>12:24:29</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.18</td>
+				<td>High Risk count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen27.png' target="_blank">Pass</a></td>
+				<td>12:24:29</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.19</td>
+				<td>Medium Risk count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen28.png' target="_blank">Pass</a></td>
+				<td>12:24:29</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">7.20</td>
+				<td>Unanswered count of Operations is calculated correctly</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen29.png' target="_blank">Pass</a></td>
+				<td>12:24:30</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>8</td>
+				<td colspan="3">Generate PDF report</td>
+			</tr>
+
+			<tr class="statuspass">
+				<td class="stepno">8.1</td>
+				<td>PDF Report generated successfully</td>
+				<td><a class="passlink" href='TS_Azure_05_122052/Screen30.png' target="_blank">Pass</a></td>
+				<td>12:25:01</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>9</td>
+				<td colspan="3">Delete Workload</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">9.1</td>
+				<td>Click Delete workload button</td>
+				<td>Done</td>
+				<td>12:25:01</td>
+			</tr>
+
+			<tr class="business_step">
+				<td>10</td>
+				<td colspan="3">Logout of the appication</td>
+			</tr>
+
+			<tr class="statusdone">
+				<td class="stepno">10.1</td>
+				<td>Logout clicked</td>
+				<td>Done</td>
+				<td>12:25:04</td>
+			</tr>
+
+			<tr class="tcfooter">
+			<td colspan="4" align="Center">
+				PASS:<font class="statuspass">30</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				FAIL:<font class="statusfail">0</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				Total Duration:00: 04: 14
+			</td></tr></table><span id="st5" class="hidden"><TCStatus>Pass</TCStaus></span><span id="day5" class="hidden">1</span></td></tr>	
+</table>
+</br></br>
+<table width="500px" align="center">
+	<tr>
+		<td class="headerrow1" colspan="2"> Test Execution Summary</td>
+	</tr>
+	<tr>
+		<td class="summarycolumn">Environment</td>
+		<td class="summarycolumnvalue">QA</td>
+	</tr>
+	<tr>
+		<td class="summarycolumn">Test Cases Executed</td>
+		<td class="summarycolumnvalue">5</td>
+	</tr>
+	<tr>
+		<td class="summarycolumn">Total Pass Count</td>
+		<td class="summarypasscolumn">1</td>
+	</tr>
+	<tr>
+		<td class="summarycolumn">Total Fail Count</td>
+		<td class="summaryfailcolumn">4</td>
+	</tr>
+	<tr>
+		<td class="summarycolumn">Total Warning Count</td>
+		<td class="summarywarningcolumn">0</td>
+	</tr>
+	<tr>
+		<td class="summarycolumn">Start Time</td>
+		<td class="summarycolumnvalue">02-19-2020	12-07-19_PM</td>
+	</tr>
+	<tr>
+		<td class="summarycolumn">End Time</td>
+		<td class="summarycolumnvalue">02-19-2020	12-25-05_PM</td>
+	</tr>
+</table>
+</body></html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Cloud Native">
+  <!--  <packages>
+      <package name="unav.cloudNative.azure"/>
+	</packages>-->
+
+	<classes>
+	<class name="unav.cloudNative.azure.TS_Azure_01"/>
+	<class name="unav.cloudNative.azure.TS_Azure_02"/>
+	<class name="unav.cloudNative.azure.TS_Azure_03"/>
+	<class name="unav.cloudNative.azure.TS_Azure_04"/>
+	<class name="unav.cloudNative.azure.TS_Azure_05"/>
+	<!--<class name="unav.appModernization.application.TS_Application_27"/>
+	<class name="unav.appModernization.application.TS_Application_28"/>
+	<class name="unav.appModernization.application.TS_Application_29"/>
+	<class name="unav.appModernization.application.TS_Application_30"/>
+	<class name="unav.appModernization.application.TS_Application_31"/>
+	<class name="unav.appModernization.application.TS_Application_32"/>
+	<class name="unav.appModernization.application.TS_Application_33"/>-->
+	   
+	</classes>
+	
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+    
